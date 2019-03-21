@@ -8,7 +8,7 @@ namespace Fucking_tired_of_binary
 {
     public class calculator
     {
-        public int Binary(string number)
+        public string Binary(string number)
         {
             int result = 0;
             char[] array = number.ToCharArray();
@@ -19,8 +19,13 @@ namespace Fucking_tired_of_binary
                 {
                     result += (int)Math.Pow(2.0, i);
                 }
+                else if (array[i] == '0') { }
+                else
+                {
+                    return "Invalid Input";
+                }
             }
-            return result;
+            return result.ToString();
         }
 
         public string Decimal(string number)
@@ -28,26 +33,32 @@ namespace Fucking_tired_of_binary
             string result = "";
             char[] array = number.ToCharArray();
             bool notdone = true;
-            int num = int.Parse(number);
-
-            do
+            if (int.TryParse(number, out int num))
             {
-                if (num % 2 == 1)
+                do
                 {
-                    result += "1";
-                }
-                else
-                {
-                    result += "0";
-                }
-                num = num / 2;
+                    if (num % 2 == 1)
+                    {
+                        result += "1";
+                    }
+                    else
+                    {
+                        result += "0";
+                    }
+                    num = num / 2;
 
-                if (num == 0)
-                {
-                    notdone = false;
+                    if (num == 0)
+                    {
+                        notdone = false;
+                    }
                 }
+                while (notdone);
             }
-            while (notdone);
+            else
+            {
+                return "Invalid input";
+            }
+
 
             char[] charArray = result.ToCharArray();
             Array.Reverse(charArray);
