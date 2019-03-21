@@ -12,6 +12,7 @@ namespace Fucking_tired_of_binary
         {
             int result = 0;
             char[] array = number.ToCharArray();
+            Array.Reverse(array);
 
             for (int i = 0; i < array.Length; i++)
             {
